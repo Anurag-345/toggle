@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useRef, useState } from 'react';
+import Content from "./Components/Content";
+
 
 function App() {
+  const myRef = useRef(null);
+  const [theme, setTheme] = useState("Light");
+  function myFunction(){
+    myRef.current.classList.toggle("mystyle");
+    console.log("hello");
+    if(theme === "Dark"){
+      setTheme("Light");
+    }
+    else{
+      setTheme("Dark");
+    }
+    
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div ref = {myRef} className="App">
+      <Content func = {myFunction}/>
     </div>
   );
 }
